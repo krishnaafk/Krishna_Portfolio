@@ -28,9 +28,6 @@ footer a { color: inherit; text-decoration: underline; }
 
 /* Dark-mode overrides so text doesn't disappear */
 body.dark section,
-body.dark .interest-card,
-body.dark .hobby-card,
-body.dark .project-card,
 body.dark form,
 body.dark nav,
 body.dark header,
@@ -38,16 +35,57 @@ body.dark .skill .bar {
     background: #1b1b1b; /* darker panels */
     color: #e6e6e6;
 }
-body.dark .project-card { box-shadow: 0 6px 18px rgba(0,0,0,0.45); }
+
+/* Dark mode card overrides */
+body.dark .interest-card {
+    background: linear-gradient(135deg, #2a2a3a 0%, #252535 100%);
+    border-color: rgba(30, 136, 229, 0.2);
+}
+
+body.dark .interest-card i {
+    color: #1e88e5;
+}
+
+body.dark .interest-card h3,
+body.dark .interest-card p {
+    color: #e6e6e6;
+}
+
+body.dark .hobby-card {
+    background: linear-gradient(135deg, #3a2a2a 0%, #352525 100%);
+    border-color: rgba(255, 107, 107, 0.2);
+}
+
+body.dark .hobby-card i {
+    color: #ff8a80;
+}
+
+body.dark .hobby-card h3,
+body.dark .hobby-card p {
+    color: #e6e6e6;
+}
+
+body.dark .project-card {
+    background: linear-gradient(135deg, #2a2a3a 0%, #252535 100%);
+    border-color: rgba(30, 136, 229, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.45);
+}
+
+body.dark .project-card h3 {
+    color: #e6e6e6;
+}
+
+body.dark .project-desc { 
+    color: #cfcfcf;
+}
+
+body.dark .skill .progress {
+    background: linear-gradient(90deg, #1e88e5, #1565c0);
+}
+
 body.dark section { border: 1px solid rgba(255,255,255,0.03); }
 body.dark a { color: #8ab4ff; }
 body.dark footer { background: linear-gradient(180deg,#0f0f0f,#121212); color: #cfcfcf; border-top-color: rgba(255,255,255,0.04); }
-
-/* Project card description styles */
-.project-card { padding: 16px; border-radius: 10px; background:#f5f5f5; margin:10px 0; }
-.project-card h3 { margin:0 0 6px 0; }
-.project-desc { margin:0; color:#555; font-size:14px }
-body.dark .project-desc { color: #cfcfcf }
 
 header {
     background-color: #000;
@@ -84,26 +122,185 @@ th, td {
     padding: 10px;
 }
 
+/* ========== SKILLS SECTION - GRID LAYOUT ========== */
+#skills {
+    padding: 40px;
+}
+
+#skills .skill {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#skills .skill p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 15px;
+}
+
 .skill .bar {
     width: 100%;
-    height: 10px;
-    background: #ddd;
-    border-radius: 5px;
+    height: 12px;
+    background: #e0e0e0;
+    border-radius: 6px;
     overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
 }
+
 .skill .progress {
-    height: 10px;
+    height: 12px;
     width: 0;
-    background: #007bff;
-    transition: 1s;
+    background: linear-gradient(90deg, #007bff, #0056cc);
+    transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border-radius: 6px;
+}
+
+/* ========== PROJECTS SECTION - GRID LAYOUT ========== */
+#projects {
+    padding: 40px;
+}
+
+#projects .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
 }
 
 .project-card {
-    background: #eee;
-    padding: 20px;
-    margin: 10px 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #eef2f7 100%);
+    padding: 24px;
+    border-radius: 12px;
     cursor: pointer;
-    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid rgba(0,123,255,0.1);
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0,123,255,0.2);
+    border-color: rgba(0,123,255,0.3);
+}
+
+.project-card h3 {
+    margin: 0 0 10px 0;
+    color: #1a1a1a;
+    font-size: 18px;
+}
+
+.project-desc {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ========== INTEREST CARDS - FLEXBOX LAYOUT ========== */
+#intrest {
+    padding: 40px;
+}
+
+.interest-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.interest-card {
+    flex: 1 1 calc(33.333% - 14px);
+    min-width: 240px;
+    max-width: 280px;
+    padding: 24px 20px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,123,255,0.1);
+    transition: all 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid rgba(0,123,255,0.15);
+}
+
+.interest-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0,123,255,0.2);
+    border-color: rgba(0,123,255,0.3);
+}
+
+.interest-card i {
+    font-size: 32px;
+    color: #007bff;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.interest-card h3 {
+    margin: 12px 0 8px 0;
+    color: #1a1a1a;
+    font-size: 18px;
+}
+
+.interest-card p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ========== HOBBIES CARDS - FLEXBOX LAYOUT ========== */
+#Hobbies {
+    padding: 40px;
+}
+
+.hobby-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.hobby-card {
+    flex: 1 1 calc(33.333% - 14px);
+    min-width: 240px;
+    max-width: 280px;
+    padding: 24px 20px;
+    background: linear-gradient(135deg, #fff8f0 0%, #fff0f0 100%);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(255,107,107,0.1);
+    transition: all 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid rgba(255,107,107,0.15);
+}
+
+.hobby-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(255,107,107,0.2);
+    border-color: rgba(255,107,107,0.3);
+}
+
+.hobby-card i {
+    font-size: 32px;
+    color: #ff6b6b;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.hobby-card h3 {
+    margin: 12px 0 8px 0;
+    color: #1a1a1a;
+    font-size: 18px;
+}
+
+.hobby-card p {
+    margin: 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 #myCanvas {
@@ -171,15 +368,47 @@ th, td {
 
 #backToTop {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #007bff;
+    bottom: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #007bff, #0056cc);
     color: white;
-    padding: 10px;
     border-radius: 50%;
     border: none;
     display: none;
     cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.35);
+    transition: all 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 999;
+    place-items: center;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+#backToTop:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0, 123, 255, 0.45);
+    background: linear-gradient(135deg, #0056cc, #004099);
+}
+
+#backToTop:active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
+}
+
+/* Dark mode back-to-top button */
+body.dark #backToTop {
+    background: linear-gradient(135deg, #1e88e5, #1565c0);
+    box-shadow: 0 8px 20px rgba(30, 136, 229, 0.4);
+}
+
+body.dark #backToTop:hover {
+    background: linear-gradient(135deg, #1565c0, #0d47a1);
+    box-shadow: 0 12px 28px rgba(30, 136, 229, 0.5);
 }
 
 .grid-layout {
@@ -229,10 +458,71 @@ form button:hover { filter:brightness(0.95) }
     font-size: 16px;
 }
 
-/* Responsive tweaks */
-@media (max-width: 720px) {
+/* Responsive tweaks for Grid and Flexbox layouts */
+@media (max-width: 1024px) {
+    #projects .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .interest-card {
+        flex: 1 1 calc(50% - 10px);
+    }
+    
+    .hobby-card {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
+
+@media (max-width: 768px) {
     .grid-layout { grid-template-columns: 1fr; }
     .slider { max-width: 100%; border-radius: 8px }
     .slider-btn { width:38px; height:38px; font-size:18px }
     form { margin: 18px; }
+    
+    #skills .skill {
+        grid-template-columns: 100px 1fr;
+        gap: 12px;
+    }
+    
+    #projects .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .interest-card {
+        flex: 1 1 100%;
+        max-width: none;
+    }
+    
+    .hobby-card {
+        flex: 1 1 100%;
+        max-width: none;
+    }
+    
+    .project-card {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    #skills .skill {
+        grid-template-columns: 1fr;
+    }
+    
+    #skills .skill p {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .project-card {
+        padding: 16px;
+    }
+    
+    .project-card h3 {
+        font-size: 16px;
+    }
+    
+    .interest-card,
+    .hobby-card {
+        padding: 16px;
+    }
 }
