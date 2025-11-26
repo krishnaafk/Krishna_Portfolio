@@ -1,207 +1,238 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #000000;
+    transition: 0.3s;
 }
 
-header {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #000000;
-    color: #fff;
-    padding-top: 10px;
-    padding-bottom: 5px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+body.light {
+    background-color: white;
+    color: black;
+}
+
+body.dark {
+    background-color: #121212;
+    color: white;
+}
+/* Footer styles */
+footer {
+    margin-top: 28px;
+    padding: 18px 12px;
     text-align: center;
+    background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02));
+    color: #333;
+    font-size: 14px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+footer a { color: inherit; text-decoration: underline; }
+
+/* Dark-mode overrides so text doesn't disappear */
+body.dark section,
+body.dark .interest-card,
+body.dark .hobby-card,
+body.dark .project-card,
+body.dark form,
+body.dark nav,
+body.dark header,
+body.dark .skill .bar {
+    background: #1b1b1b; /* darker panels */
+    color: #e6e6e6;
+}
+body.dark .project-card { box-shadow: 0 6px 18px rgba(0,0,0,0.45); }
+body.dark section { border: 1px solid rgba(255,255,255,0.03); }
+body.dark a { color: #8ab4ff; }
+body.dark footer { background: linear-gradient(180deg,#0f0f0f,#121212); color: #cfcfcf; border-top-color: rgba(255,255,255,0.04); }
+
+/* Project card description styles */
+.project-card { padding: 16px; border-radius: 10px; background:#f5f5f5; margin:10px 0; }
+.project-card h3 { margin:0 0 6px 0; }
+.project-desc { margin:0; color:#555; font-size:14px }
+body.dark .project-desc { color: #cfcfcf }
+
+header {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
 }
 
 nav {
     background-color: #f0f0f0;
-    border-bottom: 1px solid #ddd;
     padding: 10px;
+    text-align: center;
 }
 
 nav a {
-    display: inline-block;
     margin: 0 15px;
-    padding: 10px 20px;
     text-decoration: none;
     color: #333;
-    border-bottom: 2px solid transparent;
-}
-
-nav a:hover {
-    border-bottom-color: #007bff;
 }
 
 section {
     padding: 40px;
-    margin-bottom: 40px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    margin: 20px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
 }
 
 th, td {
-    padding: 10px;
     border: 1px solid #ddd;
-    text-align: left;
-}
-
-th {
-    background-color: #f0f0f0;
-}
-
-
-form {
-    background-attachment: #273956;
-    max-width: 400px;
-    margin: 0 auto;
-    color: #ffffff;
-    padding: 7px;
-}
-
-label {
     padding: 10px;
-    display: block;
-    margin-bottom: 5px;
 }
 
-input[type="text"],
-textarea {
+.skill .bar {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
+    height: 10px;
+    background: #ddd;
     border-radius: 5px;
+    overflow: hidden;
+}
+.skill .progress {
+    height: 10px;
+    width: 0;
+    background: #007bff;
+    transition: 1s;
 }
 
-button {
-    background-color: #007bff;
-    color: #fff;
+.project-card {
+    background: #eee;
+    padding: 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#myCanvas {
+    border: 1px solid black;
+}
+
+.slider {
+    width: 100%;
+    max-width: 960px;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    background: #000;
+}
+.slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.03);
+    transition: opacity 700ms cubic-bezier(.22,.9,.36,1), transform 700ms cubic-bezier(.22,.9,.36,1);
+    will-change: opacity, transform;
+}
+.slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Slider navigation buttons */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
+    background: rgba(0,0,0,0.45);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: background 180ms, transform 180ms;
+}
+.slider-btn:hover { background: rgba(0,0,0,0.65); transform: translateY(-50%) scale(1.03); }
+.slider-btn.prev { left: 14px; }
+.slider-btn.next { right: 14px; }
+
+/* Dots (optional) */
+.slider-dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px; display:flex; gap:8px; z-index:12 }
+.slider-dots .dot { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.6); cursor:pointer; transition:transform 160ms, background 160ms }
+.slider-dots .dot.active { background:#fff; transform:scale(1.25) }
+
+/* Make images inside slides look crisp */
+.slide { display:block; }
+.slide[src] { display:block; }
+
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    display: none;
     cursor: pointer;
 }
 
-
-footer {
-    background-color: #273956;
-    color: #fff;
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+}
+.grid-layout .g {
     padding: 20px;
+    background: #ddd;
     text-align: center;
 }
 
-
-.interest-cards {
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.interest-card {
-    background-color: #f0f0f0;
+/* Form on main page */
+form {
+    max-width: 760px;
+    margin: 36px auto;
+    padding: 20px;
+    display: grid;
+    gap: 12px;
+    background: rgba(255,255,255,0.9);
     border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    width: 30%;
-    margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+form label { font-weight: 600; font-size: 14px; }
+form input[type="text"], form textarea {
+    padding: 10px 12px;
+    border: 1px solid #d7d7d7;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: box-shadow 160ms, border-color 160ms;
+}
+form input[type="text"]:focus, form textarea:focus { border-color: #007bff; box-shadow: 0 4px 14px rgba(0,123,255,0.12); }
+form button { padding: 10px 16px; border-radius: 8px; border: none; background: #007bff; color: #fff; cursor: pointer; font-weight:600 }
+form button:hover { filter:brightness(0.95) }
+
+/* Styling for form-details page (targets the IDs used there) */
+#n, #e, #m {
+    display: block;
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(250,250,250,0.9));
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    font-size: 16px;
 }
 
-.interest-card i {
-    font-size: 36px;
-    color: #273956;
-    margin-bottom: 10px;
-}
-
-.interest-card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-.hobby-cards {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.hobby-card {
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    width: 30%;
-    margin-bottom: 20px;
-}
-
-.hobby-card i {
-    font-size: 36px;
-    color: #273956;
-    margin-bottom: 10px;
-}
-
-.hobby-card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-.fa-instagram {
-    font-size: 50px;
-}
-.fa-facebook {
-    font-size: 50px;
-}
-.fa-youtube {
-    font-size: 50px;
-}
-
-
-.video {
-    margin: 20px;
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  transition: background 0.3s, color 0.3s;
-}
-
-body.light {
-  background-color: white;
-  color: black;
-  text-decoration-color: black;
-}
-
-body.dark {
-  background-color: #121212;
-  color: white;
-  text-decoration: white;
-}
-
-.container {
-  text-align: right;
-    /* padding: 20px; */
-}
-
-button {
-  padding: 5px 5px;
-  font-size: 18px;
-  background: #3a3f44;
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
+/* Responsive tweaks */
+@media (max-width: 720px) {
+    .grid-layout { grid-template-columns: 1fr; }
+    .slider { max-width: 100%; border-radius: 8px }
+    .slider-btn { width:38px; height:38px; font-size:18px }
+    form { margin: 18px; }
 }

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Form Details</h2>
+
+<p id="n"></p>
+<p id="e"></p>
+<p id="m"></p>
+
+<script>
+document.getElementById("n").innerText = "Name: " + localStorage.getItem("name");
+document.getElementById("e").innerText = "Email: " + localStorage.getItem("email");
+document.getElementById("m").innerText = "Message: " + localStorage.getItem("message");
+</script>
+
+</body>
+</html>
