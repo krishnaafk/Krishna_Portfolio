@@ -14,7 +14,7 @@ body.dark {
     background-color: #121212;
     color: white;
 }
-/* Footer styles */
+
 footer {
     margin-top: 28px;
     padding: 18px 12px;
@@ -26,17 +26,17 @@ footer {
 }
 footer a { color: inherit; text-decoration: underline; }
 
-/* Dark-mode overrides so text doesn't disappear */
+
 body.dark section,
 body.dark form,
 body.dark nav,
 body.dark header,
 body.dark .skill .bar {
-    background: #1b1b1b; /* darker panels */
+    background: #1b1b1b;
     color: #e6e6e6;
 }
 
-/* Dark mode card overrides */
+
 body.dark .interest-card {
     background: linear-gradient(135deg, #2a2a3a 0%, #252535 100%);
     border-color: rgba(30, 136, 229, 0.2);
@@ -122,7 +122,7 @@ th, td {
     padding: 10px;
 }
 
-/* ========== SKILLS SECTION - GRID LAYOUT ========== */
+
 #skills {
     padding: 40px;
 }
@@ -158,7 +158,7 @@ th, td {
     border-radius: 6px;
 }
 
-/* ========== PROJECTS SECTION - GRID LAYOUT ========== */
+
 #projects {
     padding: 40px;
 }
@@ -199,7 +199,7 @@ th, td {
     line-height: 1.6;
 }
 
-/* ========== INTEREST CARDS - FLEXBOX LAYOUT ========== */
+
 #intrest {
     padding: 40px;
 }
@@ -251,7 +251,7 @@ th, td {
     line-height: 1.5;
 }
 
-/* ========== HOBBIES CARDS - FLEXBOX LAYOUT ========== */
+
 #Hobbies {
     padding: 40px;
 }
@@ -334,7 +334,7 @@ th, td {
     transform: scale(1);
 }
 
-/* Slider navigation buttons */
+
 .slider-btn {
     position: absolute;
     top: 50%;
@@ -357,12 +357,12 @@ th, td {
 .slider-btn.prev { left: 14px; }
 .slider-btn.next { right: 14px; }
 
-/* Dots (optional) */
+
 .slider-dots { position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px; display:flex; gap:8px; z-index:12 }
 .slider-dots .dot { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.6); cursor:pointer; transition:transform 160ms, background 160ms }
 .slider-dots .dot.active { background:#fff; transform:scale(1.25) }
 
-/* Make images inside slides look crisp */
+
 .slide { display:block; }
 .slide[src] { display:block; }
 
@@ -400,7 +400,6 @@ th, td {
     box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
 }
 
-/* Dark mode back-to-top button */
 body.dark #backToTop {
     background: linear-gradient(135deg, #1e88e5, #1565c0);
     box-shadow: 0 8px 20px rgba(30, 136, 229, 0.4);
@@ -422,7 +421,7 @@ body.dark #backToTop:hover {
     text-align: center;
 }
 
-/* Form on main page */
+
 form {
     max-width: 760px;
     margin: 36px auto;
@@ -446,19 +445,29 @@ form input[type="text"]:focus, form textarea:focus { border-color: #007bff; box-
 form button { padding: 10px 16px; border-radius: 8px; border: none; background: #007bff; color: #fff; cursor: pointer; font-weight:600 }
 form button:hover { filter:brightness(0.95) }
 
-/* Styling for form-details page (targets the IDs used there) */
+
+.form-details { max-width: 880px; margin: 28px auto; padding: 18px; }
+.form-details h2 { text-align: center; margin-bottom: 18px; font-size: 22px; }
+
 #n, #e, #m {
     display: block;
     max-width: 800px;
     margin: 10px auto;
     padding: 16px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(250,250,250,0.9));
-    border-radius: 8px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,250,0.98));
+    border-radius: 10px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.06);
     font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
 }
 
-/* Responsive tweaks for Grid and Flexbox layouts */
+@media (max-width:480px) {
+    .form-details { margin: 14px; padding: 12px; }
+    #n, #e, #m { padding: 12px; font-size: 15px }
+}
+
+
 @media (max-width: 1024px) {
     #projects .projects-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
